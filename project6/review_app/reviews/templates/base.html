@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}レビューアプリ{% endblock %}</title>
+</head>
+<body>
+    <header>
+        {% if user.is_authenticated %}
+            <p>こんにちは、{{ user.username }} さん！</p>
+            <nav>
+                <a href="{% url 'profile' %}">プロフィール</a> |
+                <a href="{% url 'logout' %}">ログアウト</a>
+            </nav>
+        {% else %}
+            <nav>
+                <a href="{% url 'login' %}">ログイン</a> |
+                <a href="{% url 'register' %}">新規登録</a>
+            </nav>
+        {% endif %}
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

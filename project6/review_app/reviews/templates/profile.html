@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>プロフィール</title>
+</head>
+<body>
+    <h1>{{ user.username }} さんのプロフィール</h1>
+
+    <p>ようこそ、{{ user.username }} さん！</p>
+
+    <h2>あなたの投稿</h2>
+    {% if user_reviews %}
+        <ul>
+            {% for review in user_reviews %}
+                <li>
+                    <strong>{{ review.title }}</strong> (評価: {{ review.stars }} / 5)
+                    <br>
+                    カテゴリー: {{ review.get_category_display }}
+                    <br>
+                    <a href="{% url 'review_detail' review.id %}">詳細を見る</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>まだ投稿がありません。</p>
+    {% endif %}
+
+    <h2>操作メニュー</h2>
+    <a href="{% url 'post_review' %}">レビューを投稿する</a>
+    <br>
+    <a href="{% url 'review_list' %}">すべてのレビュー一覧を見る</a>
+
+    <p><a href="{% url 'logout' %}">ログアウト</a></p>
+</body>
+</html>

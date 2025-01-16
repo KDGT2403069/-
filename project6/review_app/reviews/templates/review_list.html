@@ -1,0 +1,29 @@
+<form method="get">
+    <select name="category">
+        <option value="">全て</option>
+        <option value="movie">映画</option>
+        <option value="anime">アニメ</option>
+        <option value="novel">小説</option>
+        <option value="manga">漫画</option>
+        <option value="game">ゲーム</option>
+        <option value="other">その他</option>
+    </select>
+    <button type="submit">絞り込み</button>
+</form>
+
+<ul>
+    <ul>
+        {% for review in reviews %}
+            <li>
+                <a href="{% url 'review_detail' review.id %}">{{ review.title }}</a> 
+                - 評価: {{ review.stars }} / 5
+                <br>
+                <button class="like-button" data-id="{{ review.id }}">いいね</button>
+            </li>
+        {% endfor %}
+    </ul>
+    
+</ul>
+{% load static %}
+<script src="{% static 'reviews/like_button.js' %}"></script>
+

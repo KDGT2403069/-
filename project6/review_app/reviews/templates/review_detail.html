@@ -1,0 +1,15 @@
+<body>
+    <h1>{{ review.title }}</h1>
+    <p>カテゴリー: {{ review.get_category_display }}</p>
+    <p>評価: {{ review.stars }} / 5</p>
+    <p>コメント:</p>
+    <p>{{ review.comment }}</p>
+
+    {% if review.photo %}
+        <p>写真:</p>
+        <img src="{{ review.photo.url }}" alt="レビュー写真" style="max-width: 500px; height: auto;">
+    {% endif %}
+
+    <p>いいねの数: {{ like_count }}</p>
+    <a href="{% url 'review_list' %}">レビュー一覧に戻る</a>
+</body>
